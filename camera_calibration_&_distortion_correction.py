@@ -31,14 +31,14 @@ img = cv2.imread(fname)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 # Finding chessboard corners (for an 8x6 board):
-ret, corners = cv2.findChessboardCorners(gray, (nx, ny), None)
+ret, corners = cv2.findChessboardCorners(gray, (8, 6), None)
 
 # If found, add object points, image points & draw corners
 if ret == True:
   objpoints.append(objp)
   imgpoints.append(corners)
   # Drawing detected corners on an image:
-  cv2.drawChessboardCorners(img, (nx, ny), corners, ret)
+  cv2.drawChessboardCorners(img, (8, 6), corners, ret)
   plt.imshow(img)
 
 """# **Camera Calibration & Distortion Correction**
