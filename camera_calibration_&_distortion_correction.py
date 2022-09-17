@@ -7,6 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1gsA9WN-C57AJ7RtgjWXwbwxFsNDBCFPT
 
 # **Extract Object Points & Image Points**
+
+---
 """
 
 import numpy as np
@@ -25,10 +27,10 @@ imgpoints = [] # 2d points in image plane.
 
 # Make a list of calibration images
 fname = 'calibration_test.png'
-img = cv2.imread(fname)
+imge = cv2.imread(fname)
 
 # Converting an image, imported by cv2 or the glob API, to grayscale:
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+gray = cv2.cvtColor(imge, cv2.COLOR_BGR2GRAY)
 
 # Finding chessboard corners (for an 8x6 board):
 ret, corners = cv2.findChessboardCorners(gray, (8, 6), None)
@@ -38,8 +40,9 @@ if ret == True:
   objpoints.append(objp)
   imgpoints.append(corners)
   # Drawing detected corners on an image:
-  cv2.drawChessboardCorners(img, (8, 6), corners, ret)
-  plt.imshow(img)
+  cv2.drawChessboardCorners(imge, (8, 6), corners, ret)
+  plt.imshow(imge)
+  plt.savefig("FindingCorners.png")
 
 """# **Camera Calibration & Distortion Correction**
 
@@ -64,9 +67,9 @@ You can load data from  the distortion pickle file
 '''
 
 # Read in the saved objpoints and imgpoints
-dist_pickle = pickle.load( open( "wide_dist_pickle.p", "rb" ) )
-objpoints = dist_pickle["objpoints"]
-imgpoints = dist_pickle["imgpoints"]
+# dist_pickle = pickle.load( open( "wide_dist_pickle.p", "rb" ) )
+# objpoints = dist_pickle["objpoints"]
+# imgpoints = dist_pickle["imgpoints"]
 
 
 # Read in an image
